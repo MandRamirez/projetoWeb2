@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Professores</title></head>
+<body>
+  <h2>Professores</h2>
+  <p><a th:href="@{/professores/new}">Novo Professor</a></p>
+  <table border="1" cellpadding="6">
+    <thead><tr><th>ID</th><th>Nome</th><th>Email</th><th>Imagem</th><th>Ações</th></tr></thead>
+    <tbody>
+      <tr th:each="p : ${professores}">
+        <td th:text="${p.id}">1</td>
+        <td th:text="${p.nome}">Nome</td>
+        <td th:text="${p.email}">Email</td>
+        <td><img th:if="${p.imagem}" th:src="${p.imagem}" alt="img" style="height:48px"></td>
+        <td>
+          <a th:href="@{|/professores/${p.id}/edit|}">Editar</a>
+          <form th:action="@{|/professores/${p.id}/delete|}" method="post" style="display:inline">
+            <button onclick="return confirm('Excluir?')">Excluir</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p><a th:href="@{/}">Home</a></p>
+</body>
+</html>

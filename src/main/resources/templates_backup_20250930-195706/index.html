@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments :: content}">
+<div>
+  <div class="mb-4">
+    <h2>Categorias</h2>
+    <div class="d-flex flex-wrap gap-2">
+      <a class="btn btn-sm btn-secondary" th:each="c : ${categorias}" th:text="${c.nome}" th:href="@{|/cursos?categoriaId=${c.id}|}"></a>
+    </div>
+  </div>
+  <div th:if="${cursos != null}">
+<h2 th:text="|Resultados para '${busca}'|">Resultados</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-3">
+      <div class="col" th:each="curso : ${cursos}">
+        <div class="card h-100">
+          <img th:if="${curso.imagem}" th:src="${curso.imagem}" class="card-img-top" alt="imagem">
+          <div class="card-body">
+            <h5 class="card-title" th:text="${curso.nome}">Nome</h5>
+            <p class="card-text" th:text="${#strings.abbreviate(curso.descricao, 160)}">DescriÃ§Ã£o</p>
+            <a class="btn btn-primary" th:href="@{|/cursos/${curso.id}|}">Ver detalhes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>
+
+

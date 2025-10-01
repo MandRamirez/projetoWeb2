@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments :: content}">
+<div>
+  <h2 th:text="${curso.id} != null ? 'Editar Curso' : 'Novo Curso'"></h2>
+  <form th:action="${curso.id} != null ? @{|/cursos/${curso.id}|} : @{/cursos}" method="post" class="row g-3" th:object="${curso}">
+    <div class="col-md-6">
+      <label class="form-label">Nome</label>
+      <input class="form-control" th:field="*{nome}" />
+      <div class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Imagem (URL)</label>
+      <input class="form-control" th:field="*{imagem}" />
+    </div>
+    <div class="col-12">
+      <label class="form-label">DescriÃ§Ã£o</label>
+      <textarea class="form-control" rows="4" th:field="*{descricao}"></textarea>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Data InÃ­cio</label>
+      <input class="form-control" type="date" name="dataInicio" th:value="${curso.dataInicio}" />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Data Final</label>
+      <input class="form-control" type="date" name="dataFinal" th:value="${curso.dataFinal}" />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Categoria</label>
+      <select class="form-select" th:field="*{categoria}">
+        <option th:each="c : ${categorias}" th:value="${c}" th:text="${c.nome}"></option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Professor</label>
+      <select class="form-select" th:field="*{professor}">
+        <option th:each="p : ${professores}" th:value="${p}" th:text="${p.nome}"></option>
+      </select>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Salvar</button>
+      <a class="btn btn-secondary" th:href="@{/cursos}">Cancelar</a>
+    </div>
+  </form>
+</div>
+</html>
+

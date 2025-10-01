@@ -1,0 +1,6 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Professores</title></head>
+<body><div\ th:fragment="content">\n\ \ <h2>Professores</h2>\n\ \ <p><a\ th:href="@\{/professores/new}">Novo\ Professor</a></p>\n\ \ <table\ border="1"\ cellpadding="6">\n\ \ \ \ <thead><tr><th>ID</th><th>Nome</th><th>Email</th><th>Imagem</th><th>Ações</th></tr></thead>\n\ \ \ \ <tbody>\n\ \ \ \ \ \ <tr\ th:each="p\ :\ \$\{professores}">\n\ \ \ \ \ \ \ \ <td\ th:text="\$\{p\.id}">1</td>\n\ \ \ \ \ \ \ \ <td\ th:text="\$\{p\.nome}">Nome</td>\n\ \ \ \ \ \ \ \ <td\ th:text="\$\{p\.email}">Email</td>\n\ \ \ \ \ \ \ \ <td><img\ th:if="\$\{p\.imagem}"\ th:src="\$\{p\.imagem}"\ alt="img"\ style="height:48px"></td>\n\ \ \ \ \ \ \ \ <td>\n\ \ \ \ \ \ \ \ \ \ <a\ th:href="@\{\|/professores/\$\{p\.id}/edit\|}">Editar</a>\n\ \ \ \ \ \ \ \ \ \ <form\ th:action="@\{\|/professores/\$\{p\.id}/delete\|}"\ method="post"\ style="display:inline">\n\ \ \ \ \ \ \ \ \ \ \ \ <button\ onclick="return\ confirm\('Excluir\?'\)">Excluir</button>\n\ \ \ \ \ \ \ \ \ \ </form>\n\ \ \ \ \ \ \ \ </td>\n\ \ \ \ \ \ </tr>\n\ \ \ \ </tbody>\n\ \ </table>\n\ \ <p><a\ th:href="@\{/}">Home</a></p>\n</div></body>
+</html>
+

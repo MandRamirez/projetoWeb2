@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments :: content}">
+<div>
+  <div class="row">
+    <div class="col-md-6">
+      <img class="img-fluid rounded" th:if="${curso.imagem}" th:src="${curso.imagem}" alt="imagem">
+    </div>
+    <div class="col-md-6">
+      <h2 th:text="${curso.nome}">Nome</h2>
+      <p><strong>Categoria:</strong> <span th:text="${curso.categoria.nome}"></span></p>
+      <p><strong>Professor:</strong> <span th:text="${curso.professor.nome}"></span></p>
+      <p><strong>PerÃ­odo:</strong> <span th:text="${curso.dataInicio}"></span> a <span th:text="${curso.dataFinal}"></span></p>
+      <p th:text="${curso.descricao}">DescriÃ§Ã£o</p>
+      <div class="mt-3">
+        <a class="btn btn-secondary" th:href="@{/cursos}">Voltar</a>
+        <a class="btn btn-primary" th:href="@{|/cursos/${curso.id}/edit|}">Editar</a>
+        <form th:action="@{|/cursos/${curso.id}/delete|}" method="post" class="d-inline">
+          <button class="btn btn-danger" onclick="return confirm('Excluir?')">Excluir</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</html>
+
